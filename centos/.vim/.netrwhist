@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/root_home/resource/code/nginx/nginx-1.8.0/src/core'
+let g:netrw_dirhist_2='/home/root_home/projects'
+let g:netrw_dirhist_3='/etc/yum.repos.d'
+let g:netrw_dirhist_4='/home/root_home/projects/epr'
+let g:netrw_dirhist_5='/home/root_home/projects/yixia/gslb/lua'
+let g:netrw_dirhist_6='/home/root_home/projects/yixia/php/application/controllers'
+let g:netrw_dirhist_7='/home/root_home/projects/yixia/php/application'
+let g:netrw_dirhist_8='/var/run/redis'
