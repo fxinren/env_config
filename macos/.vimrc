@@ -1,5 +1,5 @@
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-	set fileencodings=ucs-bom,utf-8,latin1
+   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 set nocompatible	" Use Vim defaults (much better!)
@@ -13,21 +13,20 @@ set ruler		" show the cursor position all the time
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-	augroup redhat
-	autocmd!
-	" In text files, always limit the width of text to 78 characters
-	autocmd FileType text setlocal textwidth=78
-	autocmd BufRead *.txt set tw=78
-	" When editing a file, always jump to the last cursor position
-	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	\   exe "normal! g'\"" |
-	\ endif
-	" don't write swapfile on most commonly used directories for NFS mounts or USB sticks
-	autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
-	" start with spec file template
-	autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
-	augroup END
+  augroup redhat
+  autocmd!
+  " In text files, always limit the width of text to 78 characters
+  " autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  " start with spec file template
+  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+  augroup END
 endif
 
 if exists("tags")
@@ -35,25 +34,25 @@ if exists("tags")
 endif
 
 if has("cscope") && filereadable("/usr/bin/cscope")
-	set csprg=/usr/bin/cscope
-	set csto=0
-	set cst
-	set nocsverb
-	" add any database in current directory
-	if filereadable("cscope.out")
-		cs add $PWD/cscope.out
-	" else add database pointed to by environment
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
-	set csverb
+   set csprg=/usr/bin/cscope
+   set csto=0
+   set cst
+   set nocsverb
+   " add any database in current directory
+   if filereadable("cscope.out")
+      cs add $PWD/cscope.out
+   " else add database pointed to by environment
+   elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+   endif
+   set csverb
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
+  syntax on
+  set hlsearch
 endif
 
 "检测文件类型
@@ -61,17 +60,17 @@ filetype on
 
 "针对不同的文件采取不同的缩进方式
 filetype indent on
- 
+
 "允许插件
 filetype plugin on
- 
+
 "启动智能补全
 filetype plugin indent on
 
 if &term=="xterm"
-	set t_Co=8
-	set t_Sb=[4%dm
-	set t_Sf=[3%dm
+     set t_Co=8
+     set t_Sb=m
+     set t_Sf=m
 endif
 
 " Don't wake up system with blinking cursor:
@@ -84,12 +83,15 @@ let &guicursor = &guicursor . ",a:blinkon0"
 "remove welcome message
 set shortmess=atI
 
-"colorscheme desert
+"set background=dark
+
+"colorscheme vividchalk
+"colorscheme sublimemonokai
 
 set autochdir
 
 "打开文件时光标自动到上次退出该文件时的光标所在位置
-"autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal`\"" | endif
+autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal`\"" | endif
 
 "set compatible with vi
 "set nocompatible
@@ -115,17 +117,18 @@ set autoindent
 set cindent
 
 "开启语法高亮功能
-"syntax on
+syntax on
 syntax enable
 
 "指定配色方案为256色
 set t_Co=256
+"set termguicolors
 
 "设置搜索时忽略大小写
 "set ignorecase
 
 "检索时高亮显示匹配项
-"set hls
+set hls
 
 "do a increasing seach matching
 set incsearch
@@ -141,7 +144,7 @@ highlight Search cterm=NONE ctermfg=Black ctermbg=Yellow
 "在insert模式下用退格键删除
 set bs=2
 
-"状态行颜色 
+"状态行颜色
 highlight StatusLine guifg=SlateBlue guibg=Yellow
 highlight StatusLineNC guifg=Gray guibg=White
 
@@ -191,12 +194,21 @@ set fileformat=unix
 "设置编码方式
 set encoding=utf-8
 
+"indent with tab
+autocmd FileType c,cpp,java,php,vim,ruby,perl,shell,bash set tabstop=4|set shiftwidth=4
+"indent with 4 spaces
+"autocmd FileType c,cpp,java,php,vim,ruby,perl,shell,bash set tabstop=4|set shiftwidth=4|set expandtab
+"indent with 2 spaces
+autocmd FileType python set tabstop=4|set shiftwidth=2|set expandtab
+
+
 "自动判断编码时 依次尝试以下编码
 "set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 "防止特殊符号无法正常显示
 "set ambiwidth=double
- 
+
+"let g:sublimemonokai_term_italic = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " My configuration ends Here
